@@ -20,14 +20,20 @@ fun Application.configureRouting() {
     routing {
         get("/recipes") {
             try {
-                val recipes = getRecipes()
+                val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
+                val pageSize = call.request.queryParameters["pageSize"]?.toIntOrNull() ?: 2
+
+                val validPage = page.takeIf { it > 0 } ?: 1
+                val validPageSize = pageSize.takeIf { it > 0 } ?: 2
+
+                val recipes = getRecipes(validPage, validPageSize)
                 if (recipes.isEmpty()) {
                     call.respond(HttpStatusCode.NoContent, "No recipes found")
                 } else {
                     call.respond(recipes)
                 }
             } catch (e: Exception) {
-                call.respond(HttpStatusCode.InternalServerError, "An unexpected error occurred $e")
+                call.respond(HttpStatusCode.InternalServerError, "An unexpected error occurred: $e")
             }
         }
 
@@ -52,9 +58,11 @@ fun Application.configureRouting() {
     }
 }
 
-fun getRecipes(): List<RecipeDTO> = transaction {
+fun getRecipes(validPage: Int, validPageSize: Int): List<RecipeDTO> = transaction {
+    val offset = (validPage - 1) * validPageSize
     Recipes
         .selectAll()
+        .limit(validPageSize, offset.toLong())
         .map { recipeRow -> getRecipe(recipeRow) }
 }
 
