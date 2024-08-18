@@ -11,15 +11,17 @@ import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
+const val MAX_PAGE_SIZE = 5
+
 fun Application.configureRouting() {
     routing {
         get("/recipes") {
             try {
                 val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
-                val pageSize = call.request.queryParameters["pageSize"]?.toIntOrNull() ?: 2
+                val pageSize = call.request.queryParameters["pageSize"]?.toIntOrNull() ?: MAX_PAGE_SIZE
 
                 val validPage = page.takeIf { it > 0 } ?: 1
-                val validPageSize = pageSize.takeIf { it > 0 } ?: 2
+                val validPageSize = pageSize.takeIf { it > 0 } ?: MAX_PAGE_SIZE
 
                 val language = call.request.headers["Accept-Language"] ?: "en"
 
