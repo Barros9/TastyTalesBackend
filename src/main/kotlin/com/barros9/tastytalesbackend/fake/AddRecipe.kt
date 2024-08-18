@@ -1,5 +1,8 @@
 package com.barros9.tastytalesbackend.fake
 
+import com.barros9.tastytalesbackend.model.DifficultyType
+import com.barros9.tastytalesbackend.model.MealType
+import com.barros9.tastytalesbackend.model.SpiceLevel
 import com.barros9.tastytalesbackend.schema.Ingredients
 import com.barros9.tastytalesbackend.schema.Instructions
 import com.barros9.tastytalesbackend.schema.Recipes
@@ -19,14 +22,14 @@ fun addRecipeCarbonara() {
             it[cookingTime] = 15
             it[restingTime] = null
             it[servings] = 4
-            it[difficulty] = "Medium"
+            it[difficulty] = DifficultyType.MEDIUM.name
             it[tags] = "Italian, Pasta"
-            it[mealType] = "Dinner"
+            it[mealType] = MealType.DINNER.name
             it[isVegetarian] = false
             it[isGlutenFree] = false
             it[isDairyFree] = false
             it[isNutFree] = true
-            it[spiceLevel] = "Mild"
+            it[spiceLevel] = SpiceLevel.MEDIUM.name
             it[caloriesPerServing] = 500
             it[author] = "Chef Mario"
             it[averageRating] = 4.5
@@ -111,14 +114,14 @@ fun addRecipeMargheritaPizza() {
             it[cookingTime] = 15
             it[restingTime] = 60
             it[servings] = 2
-            it[difficulty] = "Medium"
+            it[difficulty] = DifficultyType.MEDIUM.name
             it[tags] = "Italian, Pizza"
-            it[mealType] = "Dinner"
+            it[mealType] = MealType.DINNER.name
             it[isVegetarian] = true
             it[isGlutenFree] = false
             it[isDairyFree] = false
             it[isNutFree] = true
-            it[spiceLevel] = "Mild"
+            it[spiceLevel] = SpiceLevel.MILD.name
             it[caloriesPerServing] = 800
             it[author] = "Chef Luigi"
             it[averageRating] = 4.7
@@ -197,14 +200,14 @@ fun addRecipeChickenCurry() {
             it[cookingTime] = 40
             it[restingTime] = null
             it[servings] = 4
-            it[difficulty] = "Hard"
+            it[difficulty] = DifficultyType.HARD.name
             it[tags] = "Indian, Chicken"
-            it[mealType] = "Dinner"
+            it[mealType] = MealType.DINNER.name
             it[isVegetarian] = false
             it[isGlutenFree] = false
             it[isDairyFree] = false
             it[isNutFree] = true
-            it[spiceLevel] = "Spicy"
+            it[spiceLevel] = SpiceLevel.HOT.name
             it[caloriesPerServing] = 600
             it[author] = "Chef Priya"
             it[averageRating] = 4.8

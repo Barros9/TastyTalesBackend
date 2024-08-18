@@ -16,18 +16,17 @@ data class RecipeDTO(
     val cookingTime: Int,
     val restingTime: Int?,
     val servings: Int,
-    val difficulty: String,
+    val difficulty: DifficultyType,
     val tags: String?,
-    val mealType: String,
+    val mealType: MealType,
     val isVegetarian: Boolean,
     val isGlutenFree: Boolean,
     val isDairyFree: Boolean,
     val isNutFree: Boolean,
-    val spiceLevel: String,
+    val spiceLevel: SpiceLevel,
     val caloriesPerServing: Int?,
     val author: String?,
     val averageRating: Double?,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime?
 )
-
