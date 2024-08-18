@@ -1,7 +1,7 @@
 package com.barros9.tastytalesbackend
 
 import com.barros9.tastytalesbackend.plugins.configureRouting
-import com.barros9.tastytalesbackend.plugins.configureSerialization
+import com.barros9.tastytalesbackend.plugins.configureSettings
 import com.barros9.tastytalesbackend.plugins.connectDatabase
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -12,7 +12,7 @@ fun main() {
 }
 
 fun Application.module() {
-    configureSerialization()
+    configureSettings()
     connectDatabase()
     configureRouting()
 }
