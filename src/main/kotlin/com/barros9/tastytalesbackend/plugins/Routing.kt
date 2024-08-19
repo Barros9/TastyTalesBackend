@@ -105,7 +105,7 @@ fun mapRecipe(recipeRow: ResultRow, translationRows: ResultRow?, language: Strin
         id = recipeRow[Recipes.id].value,
         name = translationRows?.get(RecipesTranslations.name) ?: recipeRow[Recipes.id].value.toString(),
         description = translationRows?.get(RecipesTranslations.description) ?: recipeRow[Recipes.description],
-        imageUrl = recipeRow[Recipes.imageUrl],
+        imageUrl = mapImage(recipeRow[Recipes.imageUrl]),
         preparationTime = recipeRow[Recipes.preparationTime],
         cookingTime = recipeRow[Recipes.cookingTime],
         restingTime = recipeRow[Recipes.restingTime],
@@ -218,3 +218,5 @@ fun mapReview(reviewRow: ResultRow, translationRow: ResultRow?): ReviewDTO =
         comment = translationRow?.get(ReviewsTranslations.comment) ?: reviewRow[Reviews.comment],
         date = reviewRow[Reviews.date]
     )
+
+fun mapImage(imageUrl: String?): String? = imageUrl?.replace("https://example.com/", "https://storage.cloud.google.com/tasty-tales-images/")
