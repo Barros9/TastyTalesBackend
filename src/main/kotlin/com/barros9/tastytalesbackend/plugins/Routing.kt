@@ -4,6 +4,7 @@ import com.barros9.tastytalesbackend.model.*
 import com.barros9.tastytalesbackend.schema.*
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import org.jetbrains.exposed.sql.ResultRow
@@ -15,45 +16,47 @@ const val MAX_PAGE_SIZE = 5
 
 fun Application.configureRouting() {
     routing {
-        get("/recipes") {
-            try {
-                val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
-                val pageSize = call.request.queryParameters["pageSize"]?.toIntOrNull() ?: MAX_PAGE_SIZE
+        authenticate("auth-basic") {
+            get("/recipes") {
+                try {
+                    val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
+                    val pageSize = call.request.queryParameters["pageSize"]?.toIntOrNull() ?: MAX_PAGE_SIZE
 
-                val validPage = page.takeIf { it > 0 } ?: 1
-                val validPageSize = pageSize.takeIf { it > 0 } ?: MAX_PAGE_SIZE
+                    val validPage = page.takeIf { it > 0 } ?: 1
+                    val validPageSize = pageSize.takeIf { it > 0 } ?: MAX_PAGE_SIZE
 
-                val language = call.request.headers["Accept-Language"] ?: "en"
+                    val language = call.request.headers["Accept-Language"] ?: "en"
 
-                val recipes = getRecipes(validPage, validPageSize, language)
-                if (recipes.isEmpty()) {
-                    call.respond(HttpStatusCode.NoContent, "No recipes found")
-                } else {
-                    call.respond(recipes)
+                    val recipes = getRecipes(validPage, validPageSize, language)
+                    if (recipes.isEmpty()) {
+                        call.respond(HttpStatusCode.NoContent, "No recipes found")
+                    } else {
+                        call.respond(recipes)
+                    }
+                } catch (e: Exception) {
+                    call.respond(HttpStatusCode.InternalServerError, "An unexpected error occurred: $e")
                 }
-            } catch (e: Exception) {
-                call.respond(HttpStatusCode.InternalServerError, "An unexpected error occurred: $e")
             }
-        }
 
-        get("/recipes/{id}") {
-            try {
-                val id = call.parameters["id"]?.toIntOrNull()
-                if (id == null) {
-                    call.respond(HttpStatusCode.BadRequest, "Invalid or missing recipe ID")
-                    return@get
+            get("/recipes/{id}") {
+                try {
+                    val id = call.parameters["id"]?.toIntOrNull()
+                    if (id == null) {
+                        call.respond(HttpStatusCode.BadRequest, "Invalid or missing recipe ID")
+                        return@get
+                    }
+
+                    val language = call.request.headers["Accept-Language"] ?: "en"
+
+                    val recipe = getRecipeById(id, language)
+                    if (recipe != null) {
+                        call.respond(recipe)
+                    } else {
+                        call.respond(HttpStatusCode.NotFound, "Recipe not found")
+                    }
+                } catch (e: Exception) {
+                    call.respond(HttpStatusCode.InternalServerError, "An unexpected error occurred: $e")
                 }
-
-                val language = call.request.headers["Accept-Language"] ?: "en"
-
-                val recipe = getRecipeById(id, language)
-                if (recipe != null) {
-                    call.respond(recipe)
-                } else {
-                    call.respond(HttpStatusCode.NotFound, "Recipe not found")
-                }
-            } catch (e: Exception) {
-                call.respond(HttpStatusCode.InternalServerError, "An unexpected error occurred: $e")
             }
         }
     }
@@ -219,4 +222,5 @@ fun mapReview(reviewRow: ResultRow, translationRow: ResultRow?): ReviewDTO =
         date = reviewRow[Reviews.date]
     )
 
-fun mapImage(imageUrl: String?): String? = imageUrl?.replace("https://example.com/", "https://storage.cloud.google.com/tasty-tales-images/")
+fun mapImage(imageUrl: String?): String? =
+    imageUrl?.replace("https://example.com/", "https://storage.cloud.google.com/tasty-tales-images/")
