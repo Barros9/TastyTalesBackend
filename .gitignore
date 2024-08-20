@@ -16,6 +16,9 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+# Local configuration file (sdk path, etc)
+local.properties
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

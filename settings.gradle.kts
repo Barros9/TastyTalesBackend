@@ -1,1 +1,1 @@
-rootProject.name = "com.barros9.tastytalesbackend"
+rootProject.name = "tastytales-backend"
