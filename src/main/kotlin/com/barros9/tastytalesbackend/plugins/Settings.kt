@@ -34,6 +34,13 @@ fun Application.configureSettings() {
 }
 
 fun loadCredentials(): Pair<String, String>? {
+    val username = System.getenv("KTOR_USERNAME")
+    val password = System.getenv("KTOR_PASSWORD")
+
+    if (username != null && password != null) {
+        return Pair(username, password)
+    }
+
     val properties = Properties()
     val localPropertiesFile = File("local.properties")
 
@@ -41,12 +48,13 @@ fun loadCredentials(): Pair<String, String>? {
         FileInputStream(localPropertiesFile).use { inputStream ->
             properties.load(inputStream)
         }
-        val username = properties.getProperty("username")
-        val password = properties.getProperty("password")
+        val localUsername = properties.getProperty("username")
+        val localPassword = properties.getProperty("password")
 
-        if (username != null && password != null) {
-            return Pair(username, password)
+        if (localUsername != null && localPassword != null) {
+            return Pair(localUsername, localPassword)
         }
     }
+
     return null
 }
