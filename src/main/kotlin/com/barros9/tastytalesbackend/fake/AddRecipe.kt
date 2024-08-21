@@ -15,7 +15,7 @@ fun addRecipeCarbonara() {
         val recipeId = Recipes.insertAndGetId {
             it[name] = "Spaghetti Carbonara"
             it[description] = "A classic Italian pasta dish made with eggs, cheese, guanciale, and pepper."
-            it[imageUrl] = "http://example.com/image.jpg"
+            it[imageUrl] = "https://example.com/image.jpg"
             it[preparationTime] = 10
             it[cookingTime] = 15
             it[restingTime] = null
@@ -382,7 +382,7 @@ fun addRecipeMargheritaPizza() {
         val recipeId = Recipes.insertAndGetId {
             it[name] = "Margherita Pizza"
             it[description] = "A classic Italian pizza with tomato, mozzarella, and basil."
-            it[imageUrl] = "http://example.com/pizza.jpg"
+            it[imageUrl] = "https://example.com/pizza.jpg"
             it[preparationTime] = 20
             it[cookingTime] = 15
             it[restingTime] = 60
@@ -722,7 +722,7 @@ fun addRecipeChickenCurry() {
         val recipeId = Recipes.insertAndGetId {
             it[name] = "Chicken Curry"
             it[description] = "A spicy and flavorful chicken curry with a rich sauce."
-            it[imageUrl] = "http://example.com/chicken-curry.jpg"
+            it[imageUrl] = "https://example.com/chicken-curry.jpg"
             it[preparationTime] = 15
             it[cookingTime] = 40
             it[restingTime] = null
