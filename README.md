@@ -6,6 +6,9 @@ easy to set up and scale.
 
 <img src="./src/main/resources/tastytales-logo.jpg" alt="TastyTales Logo" width="300"/>
 
+This project is part of a series of articles in [Medium](https://barros9.medium.com/):
+- [TastyTales: Developing a Ktor Backend with SQLite Integration deployed on Render](https://barros9.medium.com/tastytales-developing-a-ktor-backend-with-sqlite-integration-deployed-on-render-f76b096d8a49)
+
 ## Table of Contents
 
 - [Features](#features)
