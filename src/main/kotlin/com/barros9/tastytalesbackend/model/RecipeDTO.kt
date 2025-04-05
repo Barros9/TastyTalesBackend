@@ -23,7 +23,7 @@ data class RecipeDTO(
     val isGlutenFree: Boolean,
     val isDairyFree: Boolean,
     val isNutFree: Boolean,
-    val spiceLevel: SpiceLevel,
+    val spiceLevelType: SpiceLevelType,
     val caloriesPerServing: Int?,
     val author: String?,
     val averageRating: Double?,

@@ -120,7 +120,7 @@ fun mapRecipe(recipeRow: ResultRow, translationRows: ResultRow?, language: Strin
         isGlutenFree = recipeRow[Recipes.isGlutenFree],
         isDairyFree = recipeRow[Recipes.isDairyFree],
         isNutFree = recipeRow[Recipes.isNutFree],
-        spiceLevel = SpiceLevel.valueOf(recipeRow[Recipes.spiceLevel]),
+        spiceLevelType = SpiceLevelType.valueOf(recipeRow[Recipes.spiceLevel]),
         caloriesPerServing = recipeRow[Recipes.caloriesPerServing],
         author = recipeRow[Recipes.author],
         averageRating = recipeRow[Recipes.averageRating],

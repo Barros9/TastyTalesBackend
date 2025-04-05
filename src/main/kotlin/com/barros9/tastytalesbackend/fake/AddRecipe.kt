@@ -2,7 +2,7 @@ package com.barros9.tastytalesbackend.fake
 
 import com.barros9.tastytalesbackend.model.DifficultyType
 import com.barros9.tastytalesbackend.model.MealType
-import com.barros9.tastytalesbackend.model.SpiceLevel
+import com.barros9.tastytalesbackend.model.SpiceLevelType
 import com.barros9.tastytalesbackend.schema.*
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.exposed.sql.insert
@@ -27,7 +27,7 @@ fun addRecipeCarbonara() {
             it[isGlutenFree] = false
             it[isDairyFree] = false
             it[isNutFree] = true
-            it[spiceLevel] = SpiceLevel.MEDIUM.name
+            it[spiceLevel] = SpiceLevelType.MEDIUM.name
             it[caloriesPerServing] = 500
             it[author] = "Chef Mario"
             it[averageRating] = 4.5
@@ -394,7 +394,7 @@ fun addRecipeMargheritaPizza() {
             it[isGlutenFree] = false
             it[isDairyFree] = false
             it[isNutFree] = true
-            it[spiceLevel] = SpiceLevel.MILD.name
+            it[spiceLevel] = SpiceLevelType.MILD.name
             it[caloriesPerServing] = 800
             it[author] = "Chef Luigi"
             it[averageRating] = 4.7
@@ -734,7 +734,7 @@ fun addRecipeChickenCurry() {
             it[isGlutenFree] = false
             it[isDairyFree] = false
             it[isNutFree] = true
-            it[spiceLevel] = SpiceLevel.HOT.name
+            it[spiceLevel] = SpiceLevelType.HOT.name
             it[caloriesPerServing] = 600
             it[author] = "Chef Priya"
             it[averageRating] = 4.8
