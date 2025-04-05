@@ -1,5 +1,5 @@
 package com.barros9.tastytalesbackend.model
 
-enum class SpiceLevel {
+enum class SpiceLevelType {
     MILD, MEDIUM, HOT, EXTRA_HOT
 }
