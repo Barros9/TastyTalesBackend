@@ -1,6 +1,6 @@
 [versions]
 datatime-version = "0.6.2"
-ktor-version = "2.3.12"
+ktor-version = "3.1.2"
 kotlin-version = "2.1.20"
 logback-version = "1.4.14"
 exposed-version = "0.52.0"
@@ -39,7 +39,6 @@ ktor = [
     "ktor-serialization-kotlinx-json",
     "ktor-server-auth",
     "ktor-server-config-yaml",
-    "ktor-server-content-negotiation",
     "ktor-server-content-negotiation",
     "ktor-server-core",
     "ktor-server-netty"
