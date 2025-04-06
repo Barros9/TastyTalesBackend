@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.barros9.tastytalesbackend"
-version = "1.0.1"
+version = "2.0.0"
 
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
